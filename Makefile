@@ -8,9 +8,8 @@ CC      ?= gcc
 TARGET  ?= mygit
 
 # --- Sources -----------------------------------------------------------------
-SRCS    := mygit.c cli.c repo.c fs_utils.c
+SRCS    := src/mygit.c src/cli.c src/repo.c src/fs_utils.c
 OBJS    := $(SRCS:.c=.o)
-DEPS    := mygit.h repo.h cli.h fs_utils.h
 
 # --- Flags -------------------------------------------------------------------
 CFLAGS_COMMON := -std=c11 \
@@ -25,7 +24,7 @@ CFLAGS_DEBUG   := $(CFLAGS_COMMON) -g -O0 -DDEBUG
 CFLAGS_RELEASE := $(CFLAGS_COMMON) -O2 -DNDEBUG
 
 # Default build is debug
-CFLAGS ?= $(CFLAGS_DEBUG)
+CFLAGS ?= $(CFLAGS_DEBUG) -Iinclude
 
 # Windows (MinGW): executable gets .exe automatically
 ifeq ($(OS), Windows_NT)
